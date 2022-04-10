@@ -1,0 +1,16 @@
+{
+  "name": "credit_js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Maksim",
+  "dependencies": {
+    "dateformat": "^5.0.3",
+    "inputmask": "^5.0.7",
+    "redom": "^3.27.1"
+  },
+  "devDependencies": {
+    "parcel": "^2.4.1"
+  }
+}
