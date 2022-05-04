@@ -11,6 +11,10 @@
     "redom": "^3.27.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "babel-jest": "^28.0.3",
+    "jest": "^28.0.3",
     "parcel": "^2.4.1"
   }
 }

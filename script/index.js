@@ -1,6 +1,8 @@
 import {el, setChildren} from 'redom';
 import dateFormat from 'dateformat';
 import Inputmask from 'inputmask';
+import cardValidate from "./modules/validate";
+
 
 const wrapper = el('div.wrapper');
 const card = el('div.card');
@@ -20,13 +22,15 @@ const formInputWrapHolder =
   el('div.form__input-wrap.form__input-wrap_holder');
 const formHolderLabel =
   el('label.form__label.form__holder-label', 'Card Holder');
-const inputHolder = el('input.input.input__holder', {type: 'text'});
+const inputHolder = el('input.input.input__holder', {type: 'text', name: 'name', required: true});
+const holderValidate = el('h2.holder-validate')
 const formInputWrapNumber =
   el('div.form__input-wrap.form__input-wrap_number');
 const formNumberLabel =
   el('label.form__label.form__number-label', 'Card Number');
 const inputNumber =
-  el('input.input.input__number#card__number', {type: 'text'});
+  el('input.input.input__number#card__number', {type: 'text', name: 'number'});
+const numberValidate = el('h2.number-validate')
 const formInputWrapdDate = el('div.form__input-wrap.form__input-wrap_date');
 const formDateLabel =
   el('label.form__label.form__date-label', 'Card Expiry');
@@ -35,13 +39,14 @@ const inputDate = el('input.input.input__date',
 const formInputWrapCvv = el('div.form__input-wrap.form__input-wrap_number');
 const formCvvLabel =
   el('label.form__label.form__cvv-label', 'CVV');
-const inputCvv = el('input.input.input__cvv#input__cvv', {type: 'text'});
-const button = el('button.form__button', 'CHECK OUT');
+const inputCvv = el('input.input.input__cvv#input__cvv', {type: 'text', name: 'cvv'});
+const cvvValidate = el('h2.cvv-validate')
+const button = el('button.form__button', {type: 'submit'}, 'CHECK OUT');
 
-setChildren(formInputWrapHolder, [formHolderLabel, inputHolder]);
-setChildren(formInputWrapNumber, [formNumberLabel, inputNumber]);
+setChildren(formInputWrapHolder, [formHolderLabel, inputHolder, holderValidate]);
+setChildren(formInputWrapNumber, [formNumberLabel, inputNumber, numberValidate]);
 setChildren(formInputWrapdDate, [formDateLabel, inputDate]);
-setChildren(formInputWrapCvv, [formCvvLabel, inputCvv]);
+setChildren(formInputWrapCvv, [formCvvLabel, inputCvv, cvvValidate]);
 setChildren(form, [formInputWrapHolder,
   formInputWrapNumber, formInputWrapdDate, formInputWrapCvv, button]);
 
@@ -62,3 +67,6 @@ inputDate.addEventListener('input', () => {
   const date = inputDate.value;
   cardDate.textContent = dateFormat(date, 'dd/mm');
 });
+
+cardValidate();
+

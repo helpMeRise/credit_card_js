@@ -514,92 +514,109 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"2OpUZ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+"use strict";
 var _redom = require("redom");
-var _dateformat = require("dateformat");
-var _dateformatDefault = parcelHelpers.interopDefault(_dateformat);
-var _inputmask = require("inputmask");
-var _inputmaskDefault = parcelHelpers.interopDefault(_inputmask);
-const wrapper = _redom.el('div.wrapper');
-const card = _redom.el('div.card');
-const secure = _redom.el('p.secure', 'Secure Checkout');
-const creditCard = _redom.el('div.credit-card');
-const cardNumber = _redom.el('span.card__number', 'xxxx xxxx xxxx xxxx');
-const cardPersonal = _redom.el('div.card__personal');
-const cardName = _redom.el('span.card__name', 'John Doe');
-const cardDate = _redom.el('span.card__date', '04/24');
-_redom.setChildren(cardPersonal, [
+var _dateformat = _interopRequireDefault(require("dateformat"));
+var _inputmask = _interopRequireDefault(require("inputmask"));
+var _validate = _interopRequireDefault(require("./modules/validate"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+const wrapper = (0, _redom.el)('div.wrapper');
+const card = (0, _redom.el)('div.card');
+const secure = (0, _redom.el)('p.secure', 'Secure Checkout');
+const creditCard = (0, _redom.el)('div.credit-card');
+const cardNumber = (0, _redom.el)('span.card__number', 'xxxx xxxx xxxx xxxx');
+const cardPersonal = (0, _redom.el)('div.card__personal');
+const cardName = (0, _redom.el)('span.card__name', 'John Doe');
+const cardDate = (0, _redom.el)('span.card__date', '04/24');
+(0, _redom.setChildren)(cardPersonal, [
     cardName,
     cardDate
 ]);
-_redom.setChildren(creditCard, [
+(0, _redom.setChildren)(creditCard, [
     cardNumber,
     cardPersonal
 ]);
-const form = _redom.el('form.form#form');
-const formInputWrapHolder = _redom.el('div.form__input-wrap.form__input-wrap_holder');
-const formHolderLabel = _redom.el('label.form__label.form__holder-label', 'Card Holder');
-const inputHolder = _redom.el('input.input.input__holder', {
-    type: 'text'
+const form = (0, _redom.el)('form.form#form');
+const formInputWrapHolder = (0, _redom.el)('div.form__input-wrap.form__input-wrap_holder');
+const formHolderLabel = (0, _redom.el)('label.form__label.form__holder-label', 'Card Holder');
+const inputHolder = (0, _redom.el)('input.input.input__holder', {
+    type: 'text',
+    name: 'name',
+    required: true
 });
-const formInputWrapNumber = _redom.el('div.form__input-wrap.form__input-wrap_number');
-const formNumberLabel = _redom.el('label.form__label.form__number-label', 'Card Number');
-const inputNumber = _redom.el('input.input.input__number#card__number', {
-    type: 'text'
+const holderValidate = (0, _redom.el)('h2.holder-validate');
+const formInputWrapNumber = (0, _redom.el)('div.form__input-wrap.form__input-wrap_number');
+const formNumberLabel = (0, _redom.el)('label.form__label.form__number-label', 'Card Number');
+const inputNumber = (0, _redom.el)('input.input.input__number#card__number', {
+    type: 'text',
+    name: 'number'
 });
-const formInputWrapdDate = _redom.el('div.form__input-wrap.form__input-wrap_date');
-const formDateLabel = _redom.el('label.form__label.form__date-label', 'Card Expiry');
-const inputDate = _redom.el('input.input.input__date', {
+const numberValidate = (0, _redom.el)('h2.number-validate');
+const formInputWrapdDate = (0, _redom.el)('div.form__input-wrap.form__input-wrap_date');
+const formDateLabel = (0, _redom.el)('label.form__label.form__date-label', 'Card Expiry');
+const inputDate = (0, _redom.el)('input.input.input__date', {
     type: 'date'
 });
-const formInputWrapCvv = _redom.el('div.form__input-wrap.form__input-wrap_number');
-const formCvvLabel = _redom.el('label.form__label.form__cvv-label', 'CVV');
-const inputCvv = _redom.el('input.input.input__cvv#input__cvv', {
-    type: 'text'
+const formInputWrapCvv = (0, _redom.el)('div.form__input-wrap.form__input-wrap_number');
+const formCvvLabel = (0, _redom.el)('label.form__label.form__cvv-label', 'CVV');
+const inputCvv = (0, _redom.el)('input.input.input__cvv#input__cvv', {
+    type: 'text',
+    name: 'cvv'
 });
-const button = _redom.el('button.form__button', 'CHECK OUT');
-_redom.setChildren(formInputWrapHolder, [
+const cvvValidate = (0, _redom.el)('h2.cvv-validate');
+const button = (0, _redom.el)('button.form__button', {
+    type: 'submit'
+}, 'CHECK OUT');
+(0, _redom.setChildren)(formInputWrapHolder, [
     formHolderLabel,
-    inputHolder
+    inputHolder,
+    holderValidate
 ]);
-_redom.setChildren(formInputWrapNumber, [
+(0, _redom.setChildren)(formInputWrapNumber, [
     formNumberLabel,
-    inputNumber
+    inputNumber,
+    numberValidate
 ]);
-_redom.setChildren(formInputWrapdDate, [
+(0, _redom.setChildren)(formInputWrapdDate, [
     formDateLabel,
     inputDate
 ]);
-_redom.setChildren(formInputWrapCvv, [
+(0, _redom.setChildren)(formInputWrapCvv, [
     formCvvLabel,
-    inputCvv
+    inputCvv,
+    cvvValidate
 ]);
-_redom.setChildren(form, [
+(0, _redom.setChildren)(form, [
     formInputWrapHolder,
     formInputWrapNumber,
     formInputWrapdDate,
     formInputWrapCvv,
     button
 ]);
-_redom.setChildren(card, [
+(0, _redom.setChildren)(card, [
     secure,
     creditCard,
     form
 ]);
-_redom.setChildren(wrapper, card);
-_redom.setChildren(document.body, wrapper);
+(0, _redom.setChildren)(wrapper, card);
+(0, _redom.setChildren)(document.body, wrapper);
 inputHolder.addEventListener('input', ()=>cardName.textContent = inputHolder.value
 );
-_inputmaskDefault.default('9{4} 9{4} 9{4} 9{4}').mask(inputNumber);
+(0, _inputmask.default)('9{4} 9{4} 9{4} 9{4}').mask(inputNumber);
 inputNumber.addEventListener('input', ()=>{
     cardNumber.textContent = inputNumber.value;
 });
 inputDate.addEventListener('input', ()=>{
     const date = inputDate.value;
-    cardDate.textContent = _dateformatDefault.default(date, 'dd/mm');
+    cardDate.textContent = (0, _dateformat.default)(date, 'dd/mm');
 });
+cardValidate();
 
-},{"redom":"iahd6","dateformat":"jstoM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","inputmask":"gyYno"}],"iahd6":[function(require,module,exports) {
+},{"redom":"iahd6","dateformat":"jstoM","inputmask":"gyYno","./modules/validate":"e9TAy"}],"iahd6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "List", ()=>List
@@ -4624,6 +4641,36 @@ var formatTimezone = function formatTimezone(date) {
         }(), a1;
     }();
 });
+
+},{}],"e9TAy":[function(require,module,exports) {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = void 0;
+const cardHolderValidate = ()=>{
+    const form = document.querySelector('.form');
+    form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        if (/([a-zA-Z]+)\s([a-zA-Z]+$)/.test(form['name'].value)) document.querySelector('.holder-validate').textContent = 'Данные валидны';
+        else document.querySelector('.holder-validate').textContent = 'Данные не валидны';
+        setTimeout(()=>{
+            document.querySelector('.holder-validate').style.opacity = 0;
+        }, 2000);
+        if (/\d{4}\s\d{4}\s\d{4}\s\d{4}$/.test(form['number'].value)) document.querySelector('.number-validate').textContent = 'Данные валидны';
+        else document.querySelector('.number-validate').textContent = 'Данные не валидны';
+        setTimeout(()=>{
+            document.querySelector('.number-validate').style.opacity = 0;
+        }, 2000);
+        if (/\d{3}$/.test(form['cvv'].value)) document.querySelector('.cvv-validate').textContent = 'Данные валидны';
+        else document.querySelector('.cvv-validate').textContent = 'Данные не валидны';
+        setTimeout(()=>{
+            document.querySelector('.cvv-validate').style.opacity = 0;
+        }, 2000);
+    });
+};
+var _default = cardValidate;
+exports.default = _default;
 
 },{}]},["iuozW","2OpUZ"], "2OpUZ", "parcelRequire19af")
 
